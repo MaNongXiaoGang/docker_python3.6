@@ -130,15 +130,22 @@ deb http://mirrors.tuna.tsinghua.edu.cn/debian-security buster/updates main cont
 >  docker build -t "machinelearning/python3.6" -f Dockerfile .
 
 #### 5. 创建启动```"machinelearning/python3.6"```容器
-> docker run -it -v /home/lfg/Desktop/code/docker/python36/MachineLearning/data:/usr/src/code/data -p 10001:22 machinelearning/python3.6
+> ```docker run -it -v /home/lfg/Desktop/code:/usr/src/code/data -p 10001:22 machinelearning/python3.6 ```
+/home/lfg/Desktop/code 修改成你主机的路径，当数据卷，存放代码。
+注意这里不修改可能会报错，这个路径是我的主机路径。
+
+
+![添加docker环境变量四 配置执行路径同步路径.png](https://upload-images.jianshu.io/upload_images/14530364-2b2b26f5dd80ea89.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+**注意：
+ -v 参数是挂载数据卷，这里需要修改成你主机的代码路径。  
+格式: -v 主机路径: 容器路径**
 
 启动成功截图：
 ![自定义docker容器启动成功.png](https://upload-images.jianshu.io/upload_images/14530364-cb1e79d5ec9d27cc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
-**注意：
- -v 参数是挂载数据卷，这里需要修改成你主机的代码路径，记住你的修改，我们下面```pycharm```连接需要使用。  
-格式: -v 主机路径: 容器路径**
+
 
 ---
 ## 五、PyCharm连接我们创建好的容器中的python环境
@@ -160,10 +167,11 @@ deb http://mirrors.tuna.tsinghua.edu.cn/debian-security buster/updates main cont
 #### 6、 添加配置信息-密码
 ![添加docker环境变量三 添加配置信息-密码.png](https://upload-images.jianshu.io/upload_images/14530364-141588e1243f1360.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 #### 7、 配置执行路径和同步路径
-![添加docker环境变量四 配置执行路径同步路径.png](https://upload-images.jianshu.io/upload_images/14530364-619bb2ffc78a3a0a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+![添加docker环境变量四 配置执行路径同步路径.png](https://upload-images.jianshu.io/upload_images/14530364-5b6d54b6f78c3c8c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 **注意：
-这里需要主要同步路径，Local Path 填写你主机代码路径，或者你准备在某个路径写代码，就填哪个路径。 Remote Path 填写数据卷路径，上面有设置的**
+```Local Path ```填写你主机代码路径，或者你准备在某个路径写代码，就填哪个路径。 ```Remote Path``` 填写docker数据卷路径，上面有设置的：```/usr/src/code/data```**
 
 ---
 #### 成功截图
